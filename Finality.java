@@ -31,14 +31,14 @@ class Finality implements Creature
       Ability end= new Ability("End","attack","Slashing at the speed of light.","none");
      end.setDamage(attack);
 
-      Ability lacerate = new Ability("Lacerate","Debuff attack"," Inserts slashing nano inside the opponent to break them.","20"); 
+      Ability lacerate = new Ability("Lacerate","sDebuff attack"," Inserts slashing nano inside the opponent to break them.","20"); 
 	  
 
-      Ability  overpower= new Ability("OverPower","attack","Attacks with two times the effort","Attacks with 2x the dmg"); 
-   overpower.setDamage(attack*2);
+      Ability  overpower= new Ability("OverPower","super attack","Attacks with two times the effort","Attacks with 2x the dmg"); 
+   overpower.setDamage(2);
 
 Ability Super = new Ability ("Soul Slash","super attack","Slashes through opponents soul","none"); 
-      Super.setDamage(attack*3);
+      Super.setDamage(3);
 
       abilities[0] = end;
       abilities[1] = lacerate;

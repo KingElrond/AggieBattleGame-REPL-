@@ -27,8 +27,8 @@ class DreamReaper implements Creature
   	  Ability[] abilities = new Ability[4];
       Ability slash = new Ability("slash","attack","Dream Reaper attacks his opponent with his sickle","none");
       slash.setDamage(attack);
-      Ability chaos = new Ability("chaos","buff attack","Dream Repear draws power from the void and corrupts himself","20");
-      Ability nightmare = new Ability("nightmare","debuff defense","Dream Reaper weakens his opponent with fear","20");
+      Ability chaos = new Ability("chaos","sbuff attack","Dream Repear draws power from the void and corrupts himself","20");
+      Ability nightmare = new Ability("nightmare","sdebuff defense","Dream Reaper weakens his opponent with fear","20");
       Ability heal = new Ability("Heal", "buff hp","Super ability, Dream Reaper gains 50% of remaining health","50");
       
       abilities[0] = slash;

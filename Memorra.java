@@ -29,7 +29,7 @@ class Memorra implements Creature
       Ability blow = new Ability("Blow","attack","Blows in the opponent's face and deals damage",
       "none");
       blow.setDamage(attack);
-      Ability windyWinds = new Ability("WindyWinds","debuff defense","Knocks opponent of their feet","Decrease Opponent defense");
+      Ability windyWinds = new Ability("WindyWinds","sdebuff defense","Knocks opponent of their feet","20");
       Ability swiftly = new Ability("Swiftly","attack","Memorra rushes the opponent and attacks","none");
       swiftly.setDamage(attack);
       Ability slurp = new Ability("Slurp", "super attack","Super ability, Memorrra slurps the life out of the opponent dealing big damage",
