@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+//something
 
 class UserInput 
 {
