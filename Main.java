@@ -2,7 +2,7 @@ class Main
 {
   public static void main(String[] args) 
   {
-    //something
+    //something2
     AggieSelect as = new AggieSelect();
     UserInput ui = new UserInput();
     System.out.println("Player 1 pick your Aggie: ");
