@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+//something wrong here
 class UserInput {
   private Scanner kb;
 
