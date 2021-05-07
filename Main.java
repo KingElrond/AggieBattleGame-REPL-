@@ -9,7 +9,7 @@ class Main
     String chosenAggie = ui.getAggie();
     int ags = Integer.parseInt(chosenAggie);
     Creature p1 = new Ghoully(),p2 = new CharChimp();
-    
+    //idk anymore
     
      switch (ags) {
   case 1:
