@@ -8,7 +8,7 @@ class BattleManager
     private String attackerName, defenderName,type,cond,move;
     private boolean skipturn=false,skipturn1=false,condisType;
     private int superInt,moveVal,sTurnCount,fTurnCount;
-    // Ability[] ability 1,2,3, and super goes by name, type, description, condition 
+    // Ability[] ability 1,2,3, and super goes by name, type, description, condition test
   
     public BattleManager(Creature a, Creature b)
     {
