@@ -7,8 +7,8 @@ class BattleManager
     private UserInput ui;
     private String attackerName, defenderName,type,cond,move;
     private boolean skipturn=false,skipturn1=false,condisType;
-    private int superInt,moveVal;
-    // Ability[] ability 1,2,3, and super goes by name, type, description, condition
+    private int superInt,moveVal,sTurnCount,fTurnCount;
+    // Ability[] ability 1,2,3, and super goes by name, type, description, condition 
   
     public BattleManager(Creature a, Creature b)
     {
@@ -68,12 +68,19 @@ class BattleManager
        
        while(sm1.getHP() > 0 && sm2.getHP() > 0)
        {
-           
           //first Aggie's turn
           if(!skipturn1)
           {
+            sTurnCount=0;
             FirstAggieTurn();
+            System.out.println("\n\n" + sm1.getName() + " HP: " + sm1.getHP());
+           System.out.println(sm2.getName() + " HP: " + sm2.getHP() + "\n\n");
           }
+          else
+          {
+            sTurnCount++;
+          }
+
             attacker = second;
             defender = first;
 
@@ -81,17 +88,29 @@ class BattleManager
          {
              break;
          }
-               
-            skipturn1=false;
+              if(sTurnCount>1)
+              {
+                skipturn1=false;
+              }
+            
             // SECOND AGGIE'S TURN
             if(!skipturn)
             {
+              fTurnCount=0;
             secondAggieTurn();
+            System.out.println("\n\n" + sm1.getName() + " HP: " + sm1.getHP());
+           System.out.println(sm2.getName() + " HP: " + sm2.getHP());
+            }
+            else{
+              fTurnCount++;
             }
             attacker = first;
             defender = second;
-         
+         if(fTurnCount>1)
+        {
           skipturn=false;
+        }
+
 
           }
          
@@ -289,6 +308,7 @@ class BattleManager
               if(getHit())
               {
                   skipturn = true;
+                  fTurnCount=0;
               }
 
             } else if(type.equalsIgnoreCase("super attack"))
@@ -407,7 +427,7 @@ public void secondAggieTurn()
               if(getHit())
               {
                   skipturn1=true;
-
+                  sTurnCount=0;
               }
             }else if(type.equalsIgnoreCase("super attack"))
             {
