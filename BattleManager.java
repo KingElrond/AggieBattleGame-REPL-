@@ -12,6 +12,7 @@ class BattleManager
   
     public BattleManager(Creature a, Creature b)
     {
+      //teststuffohno
        a1 = a;
        a2 = b;
        ui = new UserInput();
