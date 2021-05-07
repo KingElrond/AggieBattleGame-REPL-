@@ -5,10 +5,10 @@ class BattleManager
     private Ability[] a1Abilities, a2Abilities;
     private String[] abTypes;
     private UserInput ui;
-    private String attackerName, defenderName,type,cond;
+    private String attackerName, defenderName,type,cond,move;
     private boolean skipturn=false,skipturn1=false,condisType;
-    private int superInt,moveVal;
-    // Ability[] ability 1,2,3, and super goes by name, type, description, condition
+    private int superInt,moveVal,sTurnCount,fTurnCount;
+    // Ability[] ability 1,2,3, and super goes by name, type, description, condition test
   
     public BattleManager(Creature a, Creature b)
     {
@@ -65,130 +65,22 @@ class BattleManager
   
      public void fight()
      {
-       String move = "";
        
        while(sm1.getHP() > 0 && sm2.getHP() > 0)
        {
-           
           //first Aggie's turn
           if(!skipturn1)
           {
-          System.out.println(first.getName() + " What do you want to do?");
-          for(int c = 0; c < 4; c++)
-          { 
-            System.out.print("Ability " + (c+1) + ") ");
-            System.out.println(a1Abilities[c].getName() + "(" + a1Abilities[c].getType()+")");
+            sTurnCount=0;
+            FirstAggieTurn();
+            System.out.println("\n\n" + sm1.getName() + " HP: " + sm1.getHP());
+           System.out.println(sm2.getName() + " HP: " + sm2.getHP() + "\n\n");
           }
-          move = ui.getMove();    
-          // determining ability number and checking the "type" of ability
-        type = "";
-        superInt = 1;
-        moveVal = Integer.parseInt(move);
-         cond="";
-         cond=a1Abilities[moveVal-1].getCondition();
-            type = a1Abilities[moveVal-1].getType();
-            superInt = a1Abilities[moveVal-1].getAttackDamage();
-            // if the ability type is attack and so on
-
-            //if the cond is a second type of act such as atk and heal, or other
-            for(String cTyPe : abTypes)
-            {
-                if(cond.equalsIgnoreCase(cTyPe))
-                {
-                    condisType=true;
-                }
-            }
-            
-            
-            //need code here not sure what though.
-            
-            boolean shouldrepeat=true;
-            int counter = 0;
-            while(shouldrepeat)
-            {
-            if(counter==1)
-            {
-                type=cond;
-            }
-            if(type.equalsIgnoreCase("attack"))
-            {
-                 
-                 if(getHit())
-                 {
-                   int damage = getDamage();
-                   sm2.updateHP(-1*damage);
-                 }
-            }
-            else if(type.equalsIgnoreCase("buff attack"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getBuffInt();
-                  sm1.updateATK(buffamount);
-              }
-            }
-            else if(type.equalsIgnoreCase("debuff turn"))
-            {
-              if(getHit())
-              {
-                  skipturn = true;
-              }
-
-            } else if(type.equalsIgnoreCase("super attack"))
-            {
-                int damage = getSDamage(superInt);
-                sm2.updateHP(-1*damage);
-            } else if(type.equalsIgnoreCase("sbuff hp"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm1.updateHP(buffamount*10);
-              }
-            } else if(type.equalsIgnoreCase("sbuff attack"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm1.updateATK(buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sdebuff defense"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm2.updateDEF(-1*buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sdebuff attack"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm2.updateATK(-1*buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sdebuff speed"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm2.updateSPD(-1*buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sbuff speed"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm2.updateSPD(buffamount);
-              }
-            } 
-
-            if(!condisType || cond.equalsIgnoreCase(type))
-            {
-                shouldrepeat=false;
-            }
-            counter++;
-            }
+          else
+          {
+            sTurnCount++;
           }
+
             attacker = second;
             defender = first;
 
@@ -196,135 +88,29 @@ class BattleManager
          {
              break;
          }
-               
-            skipturn1=false;
+              if(sTurnCount>1)
+              {
+                skipturn1=false;
+              }
+            
             // SECOND AGGIE'S TURN
             if(!skipturn)
             {
-            System.out.println(second.getName() + " What do you want to do?");
-          for(int c = 0; c < 4; c++)
-          { 
-            System.out.print("Ability " + (c+1) + ") ");
-            System.out.println(a2Abilities[c].getName() + "(" + a2Abilities[c].getType()+")");
-          }
-          move = ui.getMove();    
-          // determining ability number and checking the "type" of ability
-          type = "";
-         moveVal = Integer.parseInt(move);
-         
-            type = a2Abilities[moveVal-1].getType();
-            superInt = a2Abilities[moveVal-1].getAttackDamage();
-            cond=a2Abilities[moveVal-1].getCondition();
-
-            //if the cond is a second type of act such as atk and heal, or other
-            for(String cTyPe : abTypes)
-            {
-                if(cond.equalsIgnoreCase(cTyPe))
-                {
-                    condisType=true;
-                }
+              fTurnCount=0;
+            secondAggieTurn();
+            System.out.println("\n\n" + sm1.getName() + " HP: " + sm1.getHP());
+           System.out.println(sm2.getName() + " HP: " + sm2.getHP());
             }
-            
-            
-            //need code here not sure what though.
-            
-            boolean shouldrepeat=true;
-            int counter = 0;
-            while(shouldrepeat)
-            {
-            if(counter==1)
-            {
-                type=cond;
-            }
-            // if the ability type is attack and so on
-            if(type.equalsIgnoreCase("attack"))
-            {
-                 
-                 if(getHit())
-                 {
-                   int damage = getDamage();
-                   sm1.updateHP(-1*damage);
-                 }
-            }
-            else if(type.equalsIgnoreCase("buff attack"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getBuffInt();
-                  sm2.updateATK(buffamount);
-              }
-            }
-            else if(type.equalsIgnoreCase("debuff turn"))
-            {
-              if(getHit())
-              {
-                  skipturn1=true;
-
-              }
-            }else if(type.equalsIgnoreCase("super attack"))
-            {
-                if(getHit())
-                {
-                    int damage = getSDamage(superInt);
-                    sm1.updateHP(-1*damage);
-                }
-            }else if(type.equalsIgnoreCase("sbuff hp"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm2.updateHP(buffamount*10);
-              }
-            } else if(type.equalsIgnoreCase("sbuff attack"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm2.updateATK(buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sdebuff defense"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm1.updateDEF(-1*buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sdebuff attack"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm1.updateATK(-1*buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sdebuff speed"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm1.updateSPD(-1*buffamount);
-              }
-            } else if(type.equalsIgnoreCase("sbuff speed"))
-            {
-              if(getHit())
-              {
-                  int buffamount = getSbuff(cond);
-                  sm1.updateSPD(buffamount);
-              }
-            } 
-
-            if(!condisType || cond.equalsIgnoreCase(type))
-            {
-                shouldrepeat=false;
-            }
-            counter++;
-            }
-
-
+            else{
+              fTurnCount++;
             }
             attacker = first;
             defender = second;
-         
+         if(fTurnCount>1)
+        {
           skipturn=false;
+        }
+
 
           }
          
@@ -461,6 +247,248 @@ class BattleManager
          return buffAmount;
      }
   
-  
+      public void FirstAggieTurn()
+      {
+          System.out.println(first.getName() + " What do you want to do?");
+          for(int c = 0; c < 4; c++)
+          { 
+            System.out.print("Ability " + (c+1) + ") ");
+            System.out.println(a1Abilities[c].getName() + "(" + a1Abilities[c].getType()+")");
+          }
+          move = ui.getMove();    
+          // determining ability number and checking the "type" of ability
+        type = "";
+        superInt = 1;
+        moveVal = Integer.parseInt(move);
+         cond="";
+         cond=a1Abilities[moveVal-1].getCondition();
+            type = a1Abilities[moveVal-1].getType();
+            superInt = a1Abilities[moveVal-1].getAttackDamage();
+            // if the ability type is attack and so on
+
+            //if the cond is a second type of act such as atk and heal, or other
+            for(String cTyPe : abTypes)
+            {
+                if(cond.equalsIgnoreCase(cTyPe))
+                {
+                    condisType=true;
+                }
+            }
+            
+            
+            //need code here not sure what though.
+            
+            boolean shouldrepeat=true;
+            int counter = 0;
+            while(shouldrepeat)
+            {
+            if(counter==1)
+            {
+                type=cond;
+            }
+            if(type.equalsIgnoreCase("attack"))
+            {
+                 
+                 if(getHit())
+                 {
+                   int damage = getDamage();
+                   sm2.updateHP(-1*damage);
+                 }
+            }
+            else if(type.equalsIgnoreCase("buff attack"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getBuffInt();
+                  sm1.updateATK(buffamount);
+              }
+            }
+            else if(type.equalsIgnoreCase("debuff turn"))
+            {
+              if(getHit())
+              {
+                  skipturn = true;
+                  fTurnCount=0;
+              }
+
+            } else if(type.equalsIgnoreCase("super attack"))
+            {
+                int damage = getSDamage(superInt);
+                sm2.updateHP(-1*damage);
+            } else if(type.equalsIgnoreCase("sbuff hp"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm1.updateHP(buffamount*10);
+              }
+            } else if(type.equalsIgnoreCase("sbuff attack"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm1.updateATK(buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sdebuff defense"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm2.updateDEF(-1*buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sdebuff attack"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm2.updateATK(-1*buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sdebuff speed"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm2.updateSPD(-1*buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sbuff speed"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm2.updateSPD(buffamount);
+              }
+            } 
+
+            if(!condisType || cond.equalsIgnoreCase(type))
+            {
+                shouldrepeat=false;
+            }
+            counter++;
+            }
+        }
+
+public void secondAggieTurn()
+{
+            System.out.println(second.getName() + " What do you want to do?");
+          for(int c = 0; c < 4; c++)
+          { 
+            System.out.print("Ability " + (c+1) + ") ");
+            System.out.println(a2Abilities[c].getName() + "(" + a2Abilities[c].getType()+")");
+          }
+          move = ui.getMove();    
+          // determining ability number and checking the "type" of ability
+          type = "";
+         moveVal = Integer.parseInt(move);
+         
+            type = a2Abilities[moveVal-1].getType();
+            superInt = a2Abilities[moveVal-1].getAttackDamage();
+            cond=a2Abilities[moveVal-1].getCondition();
+
+            //if the cond is a second type of act such as atk and heal, or other
+            for(String cTyPe : abTypes)
+            {
+                if(cond.equalsIgnoreCase(cTyPe))
+                {
+                    condisType=true;
+                }
+            }
+            
+            
+            //need code here not sure what though.
+            
+            boolean shouldrepeat=true;
+            int counter = 0;
+            while(shouldrepeat)
+            {
+            if(counter==1)
+            {
+                type=cond;
+            }
+            // if the ability type is attack and so on
+            if(type.equalsIgnoreCase("attack"))
+            {
+                 
+                 if(getHit())
+                 {
+                   int damage = getDamage();
+                   sm1.updateHP(-1*damage);
+                 }
+            }
+            else if(type.equalsIgnoreCase("buff attack"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getBuffInt();
+                  sm2.updateATK(buffamount);
+              }
+            }
+            else if(type.equalsIgnoreCase("debuff turn"))
+            {
+              if(getHit())
+              {
+                  skipturn1=true;
+                  sTurnCount=0;
+              }
+            }else if(type.equalsIgnoreCase("super attack"))
+            {
+                if(getHit())
+                {
+                    int damage = getSDamage(superInt);
+                    sm1.updateHP(-1*damage);
+                }
+            }else if(type.equalsIgnoreCase("sbuff hp"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm2.updateHP(buffamount*10);
+              }
+            } else if(type.equalsIgnoreCase("sbuff attack"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm2.updateATK(buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sdebuff defense"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm1.updateDEF(-1*buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sdebuff attack"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm1.updateATK(-1*buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sdebuff speed"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm1.updateSPD(-1*buffamount);
+              }
+            } else if(type.equalsIgnoreCase("sbuff speed"))
+            {
+              if(getHit())
+              {
+                  int buffamount = getSbuff(cond);
+                  sm1.updateSPD(buffamount);
+              }
+            } 
+
+            if(!condisType || cond.equalsIgnoreCase(type))
+            {
+                shouldrepeat=false;
+            }
+            counter++;
+            }
+
+
+            }
+
 }
   //debugger at https://onlinegdb.com/H1AfwzwDO

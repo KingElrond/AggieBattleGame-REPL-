@@ -2,14 +2,14 @@ class Main
 {
   public static void main(String[] args) 
   {
-    //something
+    //something22
     AggieSelect as = new AggieSelect();
     UserInput ui = new UserInput();
     System.out.println("Player 1 pick your Aggie: ");
     String chosenAggie = ui.getAggie();
     int ags = Integer.parseInt(chosenAggie);
     Creature p1 = new Ghoully(),p2 = new CharChimp();
-    
+    //idk anymore
     
      switch (ags) {
   case 1:
