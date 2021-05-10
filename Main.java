@@ -1,3 +1,5 @@
+import javax.swing.plaf.synth.Region;
+
 class Main 
 {
   public static void main(String[] args) 
@@ -10,6 +12,19 @@ class Main
     int ags = Integer.parseInt(chosenAggie);
     Creature p1 = new Ghoully(),p2 = new CharChimp();
     //idk anymore
+    
+    
+      //array define here for the different creatures
+      Creature[] cArr = new Creature[8];
+      cArr[0]= new MedinaSaur();
+      cArr[1]= new Ghoully();
+      cArr[2]= new CharChimp();
+      cArr[3]= new DreamReaper();
+      cArr[4]= new Aquados();
+      cArr[5]= new Finality();
+      cArr[6]= new Iceguin();
+      cArr[7]= new Memorra();
+
     
      switch (ags) {
   case 1:
