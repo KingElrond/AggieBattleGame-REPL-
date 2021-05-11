@@ -33,11 +33,11 @@ class Iceguin implements Creature
   
   public Ability[] getAbility()
   {
-    Ability iceshot = new Ability("IceShot","sbuff hp","Heals itself 20 pts","20");
-    Ability subZero = new Ability("subZero","sdebuff speed","decreases opponents speed 20ps","20");
+    Ability iceshot = new Ability("IceShot","buff","Heals itself 20 pts","increase health 20");
+    Ability subZero = new Ability("subZero","debuff","decreases opponents speed 20ps","speed -20");
     Ability iceBarrage = new Ability("icy Barrage","Attack","attacks opponent with an icy barrage","none");
-    Ability iceStorm = new Ability("IceStorm","super Attack","attacks an opponent with a storm of ice opponent is hit and loses one turn","debuff turn");
-    iceStorm.setDamage(1);
+    Ability iceStorm = new Ability("IceStorm","Attack","attacks an opponent with a storm of ice opponent is hit and loses one turn","lose one turn");
+    
     Ability[] abilities = new Ability[] {iceshot,subZero,iceBarrage,iceStorm};
   	return abilities;
   }

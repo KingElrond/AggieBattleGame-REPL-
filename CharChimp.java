@@ -31,7 +31,7 @@ class CharChimp implements Creature
       kick.setDamage(attack);
       Ability burn = new Ability("Burn","debuff turn","Sets opponent on fire, opponent loses turn","lose 1 turn");
       Ability firetail = new Ability("fireTail","super attack","Sets own tail on fire and hits opponent with it for double damage","decrease hp 10");
-      firetail.setDamage(2);
+      firetail.setDamage(attack * 2);
       
       abilities[0]=brute;
       abilities[1]=kick;
@@ -51,3 +51,4 @@ class CharChimp implements Creature
   }
   
 }
+

@@ -11,6 +11,7 @@ class Ghoully implements Creature
     health = 70;
   
   	stats = new int[]{health, attack, defense, speed};
+   
   	
   }
 
@@ -36,12 +37,12 @@ class Ghoully implements Creature
 		shadowBall.setDamage(attack);
 
 		Ability hypnosis = new Ability("Hypnosis","Debuff turn",
-		"Hypnotizes the enemy and makes them lose one turns","Lose one turn");
+		"Hypnotizes the enemy and makes them lose two turns","Lose two turns");
 
 		Ability dreamEater = new Ability("Dream Eater","super Attack",
         "Enters the opponent’s dreams and does physical damage in the real world." 
         + " 2x the damage when the opponent is under hypnosis.","none");
-		dreamEater.setDamage(2);
+		dreamEater.setDamage(attack * 2);
         
         abilities[0] = darkPulse;
         abilities[1] = shadowBall;

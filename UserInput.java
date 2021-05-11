@@ -1,5 +1,5 @@
 import java.util.Scanner;
-//something
+
 
 class UserInput 
 {
@@ -10,49 +10,27 @@ class UserInput
     kb = new Scanner(System.in);
   }
   
-  public String getAggie()
+  public String getMove(int energy)
   {
     String move = "";
     boolean valid = false;
     while(!valid)
     {
-      System.out.println("Press 1,2,3,4,5,6,7, or 8");
-      move = kb.nextLine();
-      
-    if(move.equals("69"))
-      {
-          java.lang.System.exit(0);
-          return null;
-          
-      }else if(move.equals("1") || move.equals("2") || move.equals("3") || move.equals("4") || move.equals("5") || move.equals("6")|| move.equals("7")|| move.equals("8"))
-    {    
-        valid = true;
-    }else
-        System.out.println("*** INVALID INPUT ***");
-    }
-    return move;
-  }
-  
-  
-  public String getMove()
-  {
-    String move = "";
-    boolean valid = false;
-    while(!valid)
-    {
+      System.out.println("Your energy is: " + energy);
       System.out.println("Press 1,2,3 or 4");
       move = kb.nextLine();
       
-    if(move.equals("6"))
-      {
-          java.lang.System.exit(0);
-          return null;
-          
-      }else if(move.equals("1") || move.equals("2") || move.equals("3") || move.equals("4"))
-    {    
+      if(move.equals("1") || move.equals("2") || move.equals("3") || move.equals("4"))
         valid = true;
-    }else
+      else
         System.out.println("*** INVALID INPUT ***");
+      
+      if(energy < 100 && move.equals("4"))
+      {
+        valid = false;
+        System.out.println("You don't have enough energy for this");
+      }
+      
     }
     return move;
   }

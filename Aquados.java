@@ -1,5 +1,6 @@
 
 
+
 class Aquados implements Creature 
 {
 	private int attack, defense, speed, health;
@@ -34,9 +35,9 @@ class Aquados implements Creature
       Ability suffocate = new Ability("Suffocate","debuff turn","Opponent is drowning in water","Opponent loses a turn to catch its breath");
       Ability chomp = new Ability("Chomp","attack","Aquados takes a bite out of its opponent","none");
       chomp.setDamage(attack);
-      Ability iceBeam = new Ability("Ice Beam", "super attack","Super ability, Aquados generates three tons of ice and shoots it in a continuous beam at the opponent, severely damaging it",
+      Ability iceBeam = new Ability("Ice Beam", "attack","Super ability, Aquados generates three tons of ice and shoots it in a continuous beam at the opponent, severely damaging it",
       "none");
-      iceBeam.setDamage(3);
+      iceBeam.setDamage(attack * 3);
       
       abilities[0] = waterCannon;
       abilities[1] = suffocate;

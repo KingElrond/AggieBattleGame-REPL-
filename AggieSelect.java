@@ -8,6 +8,7 @@ class AggieSelect
   private ArrayList<Creature> agg;
   private Creature a1,a2,a3,a4,a5,a6,a7,a8;
   
+  
    public AggieSelect()
    {
      agg = new ArrayList<>();
@@ -31,6 +32,7 @@ class AggieSelect
      agg.add(a8);
      selectionLoop();
      
+     
    }
   
    private void displayAggieList()
@@ -45,14 +47,19 @@ class AggieSelect
      
    }
   
-   private void selectionLoop()
+   public void selectionLoop()
    {
      boolean stop = false;
+     
+     boolean choose = false;
+     if(!choose)
+     
+     
+     
      while(!stop)
      {
        displayAggieList();
-       System.out.println("Press 100 when ready to pick your aggie and 69 to close program");
-       System.out.println("View Aggie # ");
+       System.out.println("Press 100 to exit this and choose your Aggie");
        String choice = kb.nextLine();
        System.out.println();
        if(choice.trim().equals("100"))
@@ -105,4 +112,51 @@ class AggieSelect
      }
        
    }
+  
+    public Creature selectYourAggie()
+    {
+      ArrayList<String> numbers = new ArrayList();
+      for(int c = 0; c < agg.size(); c++)
+        numbers.add((c + 1) + "");
+      
+      System.out.println(numbers);
+      //Creature select  = new ????????????????
+      
+      String pick = ""; 
+      //valid input
+      boolean valid = false;
+      while(!valid)
+      {
+        System.out.println("Please select your Aggie: ");
+        pick = kb.nextLine();
+        /*
+        for(String n : numbers)
+        {
+           if(n.equals(pick))
+           {
+             valid = true;
+             System.out.println("valid inside for each: " + valid);
+             break;
+           }          
+        }
+           System.out.println("valid outside: " + valid);
+           if(valid = false)
+             System.out.println("**INVALID INPUT**"); */
+        for(int c = 0; c < numbers.size(); c++)
+        {
+          if(pick.equals(numbers.get(c)))
+            valid = true;
+        }
+        if(!valid)
+          System.out.println("*** INVALID INPUT ***");
+       
+      }
+      System.out.println("after valid input");
+      int cNum = Integer.parseInt(pick);
+      System.out.println("cNum " + cNum); 
+      
+      return agg.get(cNum-1);
+    }
+  
+  
 }

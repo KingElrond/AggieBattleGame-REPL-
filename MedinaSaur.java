@@ -29,12 +29,12 @@ class MedinaSaur implements Creature
       Ability tailWhip = new Ability("Tail Whip","attack","blunt force attack, Medina Saur spins around and whip the opponent with its tail",
       "none");
       tailWhip.setDamage(attack);
-      Ability redBull = new Ability("redBull","sbuff speed","shotgunning a redbull","20");
+      Ability redBull = new Ability("redBull","buff speed","shotgunning a redbull","Increase speed by 20");
       Ability fireBreath = new Ability("Fire Breath","attack","Medina Saur channels the fire pit in his stomach and blows out a cone of fire","none");
       fireBreath.setDamage(attack);
       Ability stomp = new Ability("stomp", "super attack","Super ability, Medina Saur flies up in the air at the speed of sound and lands on top of the oponent crushing it",
       "none");
-      stomp.setDamage(2);
+      stomp.setDamage(attack * 2);
       
       abilities[0] = tailWhip;
       abilities[1] = redBull;
