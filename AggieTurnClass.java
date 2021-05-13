@@ -43,9 +43,9 @@ class AggieTurnClass
             if(type.equalsIgnoreCase("attack"))
             {
                  
-                 if(getHit())
+                 if(BattleManager.getHit())
                  {
-                   int damage = getDamage();
+                   int damage = BattleManager.getDamage();
                    def.updateHP(-1*damage);
                  }
             }
@@ -100,9 +100,9 @@ class AggieTurnClass
             atk.updateEnergy(-100);
              int satk =atk.getAttack();
             atk.setAttack(satk);
-              if(getHit())
+              if(BattleManager.getHit())
                  {
-                   int damage = getDamage();
+                   int damage = BattleManager.getDamage();
                    def.updateHP(-1*damage);
                   atk.updateEnergy(-25);
                  }
