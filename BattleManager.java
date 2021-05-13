@@ -1,8 +1,10 @@
 
 class BattleManager 
 {
-    private StatsManager sm1,sm2,smTemp;
-    private Creature a1,a2, first,second, attacker, defender;
+    private StatsManager smTemp;
+    private static StatsManager sm1,sm2;
+    private Creature a1,a2;
+    private static Creature first,second,attacker,defender;
     private Ability[] a1Abilities, a2Abilities;
     private UserInput ui;
     private String attackerName, defenderName;
@@ -91,7 +93,7 @@ class BattleManager
        
      }
   
-     public boolean getHit()
+     public static boolean getHit()
      {
        boolean hit = false;
        double dodge = 0;
@@ -117,7 +119,7 @@ class BattleManager
        return hit;
      }
   
-  	 public int getDamage()
+  	 public static int getDamage()
      {
         int damage = 0;
         int mitigate = 0;

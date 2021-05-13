@@ -2,6 +2,7 @@ class AggieTurnClass
 {
   public void AggieTurn(StatsManager atk, StatsManager def)
       {
+        UserInput ui = new UserInput();
          String move = "";
          int moveVal = 0;
         String type = "";
