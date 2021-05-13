@@ -2,26 +2,35 @@
 class StatsManager 
 {
    private int hp, atk,def,sp,energy;
-  
+  private String name;
+  private Creature cCreature;
    public StatsManager(Creature one)
    {
      //hp,atk,def,sp in the array
      int[] a = one.getStats();
-    
+    cCreature = one;
      hp = a[0];
      atk = a[1];
      def = a[2];
      sp = a[3];
      energy = 0;
-    
+    name = one.getName();
      hp *= 10;
    }
   
+    public String getName()
+    {
+      return name;
+    }
   	public void updateHP(int modifier)
     {
       hp += modifier;
     }
-  
+
+    public Creature returnCreature()
+    {
+      return cCreature;
+    }
  
   
   	public int getHP()
