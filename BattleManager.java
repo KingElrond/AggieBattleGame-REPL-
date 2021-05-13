@@ -1,10 +1,8 @@
 
 class BattleManager 
 {
-    private StatsManager smTemp;
-    private static StatsManager sm1,sm2;
-    private Creature a1,a2;
-    private static Creature first,second,attacker,defender;
+    private StatsManager sm1,sm2,smTemp;
+    private Creature a1,a2, first,second, attacker, defender;
     private Ability[] a1Abilities, a2Abilities;
     private UserInput ui;
     private String attackerName, defenderName;
@@ -65,11 +63,12 @@ class BattleManager
   
      public void fight()
      {
+       AggieTurnClass = new AggieTurnClass(sm1,sm2,a1Abilities,a2Abilities);
       
        
        while(sm1.getHP() > 0 && sm2.getHP() > 0)
        {
-           AggieTurn(sm1,sm2);
+           AggieTurn(sm1,sm2,attacker,defender);
            attacker = second;
            defender = first;
          
@@ -77,7 +76,7 @@ class BattleManager
          {
            break;
          }
-           AggieTurn(sm2,sm1);
+           AggieTurn(sm2,sm1,attacker,defender);
            attacker = first;
            defender = second;
           
@@ -93,7 +92,7 @@ class BattleManager
        
      }
   
-     public static boolean getHit()
+     public boolean getHit()
      {
        boolean hit = false;
        double dodge = 0;
@@ -119,7 +118,7 @@ class BattleManager
        return hit;
      }
   
-  	 public static int getDamage()
+  	 public int getDamage()
      {
         int damage = 0;
         int mitigate = 0;

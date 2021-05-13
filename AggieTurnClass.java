@@ -1,6 +1,18 @@
 class AggieTurnClass
 {
-  public void AggieTurn(StatsManager atk, StatsManager def)
+  private Attack ATclass;
+  private Ability[] a1Abilities, a2Abilities;
+  private StatsManager sm1,sm2;
+  public AggieTurnClass(StatsManager s1, StatsManager s2,Ability[] a1ab, Ability[] a2ab)
+  {
+    ATclass = new Attack(s1,s2);
+    a1Abilities = a1ab;
+    a2Abilities = a2ab;
+    sm1=s1;
+    sm2=s2;
+
+  }
+  public void AggieTurn(StatsManager atk, StatsManager def,Creature attacker,Creature defender)
       {
         UserInput ui = new UserInput();
          String move = "";
@@ -43,9 +55,9 @@ class AggieTurnClass
             if(type.equalsIgnoreCase("attack"))
             {
                  
-                 if(BattleManager.getHit())
+                 if(ATclass.getHit(attacker,defender))
                  {
-                   int damage = BattleManager.getDamage();
+                   int damage = ATclass.getDamage(attacker,defender);
                    def.updateHP(-1*damage);
                  }
             }
@@ -93,16 +105,16 @@ class AggieTurnClass
               System.out.println("miss: " + miss);
               if(miss <= 50)              
                  for(int c = 0; c < 2; c++)
-                     AggieTurn(atk,def);
+                     AggieTurn(atk,def,attacker,defender);
             }
              else if(type.equalsIgnoreCase("super attack"))
            {
             atk.updateEnergy(-100);
              int satk =atk.getAttack();
             atk.setAttack(satk);
-              if(BattleManager.getHit())
+              if(ATclass.getHit(attacker,defender))
                  {
-                   int damage = BattleManager.getDamage();
+                   int damage = ATclass.getDamage(attacker,defender);
                    def.updateHP(-1*damage);
                   atk.updateEnergy(-25);
                  }
