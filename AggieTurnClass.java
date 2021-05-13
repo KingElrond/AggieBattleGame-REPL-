@@ -3,6 +3,7 @@ class AggieTurnClass
   private Attack ATclass;
   private Ability[] a1Abilities, a2Abilities;
   private StatsManager sm1,sm2;
+  
   public AggieTurnClass(StatsManager s1, StatsManager s2,Ability[] a1ab, Ability[] a2ab)
   {
     ATclass = new Attack(s1,s2);
@@ -10,6 +11,8 @@ class AggieTurnClass
     a2Abilities = a2ab;
     sm1=s1;
     sm2=s2;
+    
+    
 
   }
   public void AggieTurn(StatsManager atk, StatsManager def,Creature attacker,Creature defender)
@@ -61,13 +64,14 @@ class AggieTurnClass
                    def.updateHP(-1*damage);
                  }
             }
+            
                 else if(type.equalsIgnoreCase("buff attack"))
             {
             atk.setAttack((int)(atk.getAttack()*.20));
             }
             else if(type.equalsIgnoreCase("buff health"))
             {
-            atk.updateHP(20);
+                       atk.updateHP(20);
             }
             else if(type.equalsIgnoreCase("buff defense"))
             {
@@ -124,8 +128,16 @@ class AggieTurnClass
            else if(type.equalsIgnoreCase("super health"))
            {
              int hp =atk.getHP();
+             if(hp < 90)
+             {
+               int buff = (int)(hp * (2.50+(hp/100)) + .5);
+               System.out.println("hpworking " + buff);
+               atk.updateHP((int)(hp * (2.50+(hp/100)) + .5));
+             } else
+             {
             atk.updateHP((int)(hp * 1.50 + .5));
-            atk.updateEnergy(-100);
+             }
+             atk.updateEnergy(-100);
            }
             
               
