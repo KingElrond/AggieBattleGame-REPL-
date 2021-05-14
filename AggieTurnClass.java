@@ -130,8 +130,8 @@ class AggieTurnClass
              int hp =atk.getHP();
              if(hp < 90)
              {
-               int buff = (int)(hp * (2.50+(hp/100)) + .5);
-               System.out.println("hpworking " + buff);
+               int buff = (int)(hp * (2.50+((double)(hp/50))) + .5);
+               System.out.println("hp buff amount: " + buff);
                atk.updateHP((int)(hp * (2.50+(hp/100)) + .5));
              } else
              {

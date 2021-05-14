@@ -31,7 +31,7 @@ class DreamReaper implements Creature
       chaos.setDamage(attack*2);
       Ability nightmare = new Ability("nightmare","debuff defense","Dream Reaper weakens his opponent with fear","defense -20");
       nightmare.setDamage(attack);
-      Ability heal = new Ability("super health", "buff hp","Super ability, Dream Reaper gains 50% of remaining health","none");
+      Ability heal = new Ability("heal", "super health","Super ability, Dream Reaper gains 50% of remaining health","none");
       
       abilities[0] = slash;
       abilities[1] = chaos;
