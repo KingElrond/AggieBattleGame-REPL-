@@ -67,7 +67,7 @@ class AggieTurnClass
             
                 else if(type.equalsIgnoreCase("buff attack"))
             {
-            atk.setAttack((int)(atk.getAttack()*.20));
+            atk.setAttack((int)(atk.getAttack()*.15));
             }
             else if(type.equalsIgnoreCase("buff health"))
             {

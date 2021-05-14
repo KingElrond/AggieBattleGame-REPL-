@@ -64,7 +64,7 @@ class BattleManager
      public void fight()
      {
        AggieTurnClass at = new AggieTurnClass(sm1,sm2,a1Abilities,a2Abilities);
-      
+      //
        
        while(sm1.getHP() > 0 && sm2.getHP() > 0)
        {
@@ -82,11 +82,11 @@ class BattleManager
           
          
        }
-       if(sm1.getHP() <= 0)
+       if((sm1.getHP() > 0 && sm1.returnCreature().equals(a1)) || (sm2.getHP() > 0 && sm2.returnCreature().equals(a1)))
        {
-         System.out.println(sm1.getName() + " Died");
+         System.out.println("Player 1 wins");
        } else{
-         System.out.println(sm2.getName() + " Died");
+         System.out.println("Player 2 wins");
        }
          
        
