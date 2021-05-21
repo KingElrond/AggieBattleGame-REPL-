@@ -1,2 +1,2 @@
 language = "java_swing"
-run = ""
+run = "javac -classpath .:/run_dir/junit-4.12.jar:target/dependency/* -d . Ability.java AggieSelect.java AggieTurnClass.java Aquados.java Attack.java BattleManager.java CharChimp.java Creature.java DreamReaper.java Finality.java Ghoully.java Iceguin.java Main.java MedinaSaur.java Memorra.java Pegasus.java StatsManager.java UserInput.java \n java -classpath .:/run_dir/junit-4.12.jar:target/dependency/* Main"
