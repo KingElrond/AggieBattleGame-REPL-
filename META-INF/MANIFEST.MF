@@ -6,3 +6,5 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: AggieBattleGame.REPL
 Export-Package: .
+Bundle-ClassPath: .,
+ jgoodies-forms-1.8.0.jar
